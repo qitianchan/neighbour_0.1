@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from flask import Flask
-from neighbour.district.views import distric
-from neighbour.wechat.navbar import wechat_navbar
-from neighbour.extensions import db
+from district.views import distric
+from district.valiation import valiation_app
+from wechat.navbar import wechat_navbar
+from extensions import db
 
 
 def create_app(config=None):
@@ -25,6 +26,7 @@ def create_app(config=None):
 
 def configure_blueprint(app):
     app.register_blueprint(distric)
+    app.register_blueprint(valiation_app)
     app.register_blueprint(wechat_navbar)
 
 
