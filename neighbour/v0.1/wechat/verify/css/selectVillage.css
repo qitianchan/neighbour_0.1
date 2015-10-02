@@ -1,0 +1,11 @@
+@charset "UTF-8";
+html,body{
+    height:100%;
+}
+.tip {height:30px;line-height:30px;text-indent:10px;border-bottom:solid 1px #999;font-size:14px;}
+.left,.right {}
+.left {float:left;}
+.left {border-right:solid 1px #999;}
+.left>li {width:120px;height:50px;line-height: 50px;border-bottom:solid 1px #999;text-indent:10px;background: #fff;}
+.left>li.on,.left>li:hover {background-color: #efeff4;}
+.right>li {height:50px;line-height: 50px;width:100%;border-bottom: solid 1px #999;text-indent:10px;}

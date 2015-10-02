@@ -1,0 +1,113 @@
+@charset "UTF-8";
+/* 清除内外边距 */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+pre, /* text formatting elements 文本格式元素 */
+fieldset, lengend, button, input, textarea, /* form elements 表单元素 */
+th, td { /* table elements 表格元素 */
+    margin: 0;
+    padding: 0;
+}
+
+/* 设置默认字体 */
+body,
+button, input, select, textarea { /* for ie */
+    font: 1em "SimHei", sans-serif;
+}
+
+/* 重置列表元素 */
+ul, ol { list-style: none; }
+
+body {
+    background-color: #efeff4;
+}
+
+
+.clear:after{
+    display:block;
+    visibility:hidden;
+    content:"";
+    height:0;
+    font-size:0;
+    clear:both;
+}
+.clear{*zoom:1;}
+
+
+.black {color: #373737;}
+.gray {color: #939393;}
+.blue {color:#305c89;}
+.red {color:#f00;}
+.white{color:#fff;}
+
+.bg-red{background-color:#ed1b24;}
+.bg-blue{background-color:#305c89;}
+.bg-khaki{background-color:#a68343;}
+.bg-gray{background-color:#a8a9ad;}
+.bg-white{background-color:#fff;}
+
+.mt13 {margin-top:13px;}
+.mt10 {margin-top:10px;}
+.mt5 {margin-top:5px;}
+
+.bt {border-top:1px solid #efeff4;}
+
+.fr {float:right;}
+
+.row {
+    height: 40px;
+    width: 100%;
+    background-color: #fff;
+    padding: 0 16px;
+    line-height: 40px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.row.on{
+    background-color:#efeff4;
+}
+
+.key {
+    color: #373737;
+    min-width: 70px;
+    display: inline-block;
+}
+
+.val {
+    border: 0;
+    color: #939393;
+}
+
+.btn-large {
+    display:block;
+    width:92%;
+    height:40px;
+    background-color: #009b63;
+    border-radius: 5px;
+    margin: 0 auto;
+    color:#fff;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+}
+.btn-middle {
+    width:98px;
+    height:24px;
+    background-color: #009b63;
+    color: #fff;
+    line-height: 24px;
+    text-align: center;
+    display:inline-block;
+}
+.btn-small {
+
+}
+.btn-large:active,.btn-middle:active,.btn-small:active{
+    background-color: #038153;
+}
+
+/*查看详情的图标“>”*/
+.icon-detail{ width:10px; height:10px; border-top:2px solid #909090; border-right:2px solid #909090; -webkit-transform:rotate(45deg); transform:rotate(45deg); display:inline-block;}
+/*查看更多的图标*/
+.icon-more { display:inline-block;width:16px;height:16px;-webkit-transform:rotate(90deg); transform:rotate(90deg); }
+.icon-more:after{content:"》";display:block;font-size:0.5em;text-align: left;}
