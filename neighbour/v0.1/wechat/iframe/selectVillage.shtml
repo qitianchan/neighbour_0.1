@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="/wechat/iframe/css/selectVillage.css">
+<div id="divSelectVillage" class="select-frame" style="display: none;">
+    <p class="tip">请选择所在的小区</p>
+    <ul class="left" id="divArea">
+    </ul>
+    <ul class="right" id="divVillage">
+    </ul>
+</div>
+<script src="/wechat/js/common.js"></script>
+<script src="/wechat/iframe/js/selectVillage.js"></script>
