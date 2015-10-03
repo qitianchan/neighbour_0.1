@@ -9,15 +9,14 @@
 </head>
 <body>
 
-<p class="address">凤凰小区阳光花园5-501</p>
+<p class="address" id="pAddress"></p>
 
-<div class="tab-nav">
-    <span>燃气表</span>
-    <span>水表</span>
-</div>
+<p class="tab-nav" id="pNav">
+    <span class="on" key="0">燃气表</span><span key="1">水表</span>
+</p>
 
 <div class="meter" id="divMeter">
-    <input type="text" id="tbNum" class="num" />
+    <input type="text" id="tbNum" class="num" placeholder="输入读数" />
 </div>
 
 <p class="tip">请在20号前提交九月份水表读数</p>

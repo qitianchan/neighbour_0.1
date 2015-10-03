@@ -27,6 +27,7 @@
         //    window.location.href = "submitForm.shtml?village_id="+k;
         //});
 
+        // test
         var allAreaList = [{area_id:"01",area_name:"天河",villageList:[
             {village_id:"01001",village_name:"华景新城"},
             {village_id:"01002",village_name:"都市华庭"},

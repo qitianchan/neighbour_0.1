@@ -8,6 +8,7 @@
         var $ulHouse = $("#ulHouse"),
             $tempHouse = $("#tempHouse");
 
+        // test
         var houseList = [{code:"01",address:"风享花园一期丰庭南街15号405",type:"0",phone:"18888888888"},
             {code:"02",address:"风享花园一期丰庭南街15号406",type:"1",phone:"1880000000"}];
 
