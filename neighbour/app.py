@@ -2,8 +2,9 @@
 from flask import Flask
 from neighbour.district.views import distric
 from neighbour.wechat.navbar import wechat_navbar
-from neighbour.extensions import db
-
+from neighbour.extensions import db, login_manager
+from neighbour.views.account import account
+from neighbour.views.test import test
 
 def create_app(config=None):
     """
@@ -26,6 +27,8 @@ def create_app(config=None):
 def configure_blueprint(app):
     app.register_blueprint(distric)
     app.register_blueprint(wechat_navbar)
+    app.register_blueprint(account, url_prefix=app.config['ACCOUNT_URL_PREFIX'])
+    app.register_blueprint(test, url_prefix=app.config['TEST_URL_PREFIX'])
 
 
 def configure_extensions(app):
@@ -33,27 +36,45 @@ def configure_extensions(app):
     db.init_app(app)
     db.app = app
 
+    #Flask-Login
+    login_configure(app)
+
+
+def login_configure(app):
+    login_manager.init_app(app)
+    login_manager.login_view = app.config['LOGIN_VIEW']
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        user_instance = User.query.filter_by(id=user_id).first()
+        if user_instance:
+            return user_instance
+        else:
+            return None
+
+
+
 if __name__ == '__main__':
     app = create_app()
-    from neighbour.models.groupon import Groupon
-    from neighbour.models.groupon_order import GrouponOrder
-    from neighbour.models.groupon import Groupon
-    from neighbour.models.groupon_order import GrouponOrder
-    from neighbour.models.house_info import HouseInfo
-    from neighbour.models.valiate_info import ValiateInfo
+    # from neighbour.models.groupon import Groupon
+    # from neighbour.models.groupon_order import GrouponOrder
+    # from neighbour.models.groupon import Groupon
+    # from neighbour.models.groupon_order import GrouponOrder
+    # from neighbour.models.house_info import HouseInfo
+    # from neighbour.models.valiate_info import ValiateInfo
     from neighbour.models.user import User
-    from neighbour.models.fix_order import FixOrder
-    from neighbour.models.house_fee import HouseFee
-    from neighbour.models.building import Building
-    from neighbour.models.cell import Cell
-    from neighbour.models.residential_areas import ResidentialAreas
-    from neighbour.models.notice import Notice
-    from neighbour.models.info import Info
-    from neighbour.models.areas import Areas
-    from neighbour.models.tenant import Tenant
+    # from neighbour.models.fix_order import FixOrder
+    # from neighbour.models.house_fee import HouseFee
+    # from neighbour.models.building import Building
+    # from neighbour.models.cell import Cell
+    # from neighbour.models.residential_areas import ResidentialAreas
+    # from neighbour.models.notice import Notice
+    # from neighbour.models.info import Info
+    # from neighbour.models.areas import Areas
+    # # from neighbour.models.tenant import Tenant
 
 
-    db.drop_all()
+    # db.drop_all()
     db.create_all()
 
 
