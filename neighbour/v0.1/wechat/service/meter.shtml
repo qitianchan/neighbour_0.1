@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>水气表抄送</title>
+    <link rel="stylesheet" href="/wechat/css/common.css">
+    <link rel="stylesheet" href="css/meter.css">
+</head>
+<body>
+
+<p class="address" id="pAddress"></p>
+
+<p class="tab-nav" id="pNav">
+    <span class="on" key="0">燃气表</span><span key="1">水表</span>
+</p>
+
+<div class="meter" id="divMeter">
+    <input type="text" id="tbNum" class="num" placeholder="输入读数" />
+</div>
+
+<p class="tip">请在20号前提交九月份水表读数</p>
+
+<button class="btn-large">提交</button>
+
+<script src="/wechat/js/jquery.min.js"></script>
+<script src="/wechat/js/common.js"></script>
+<script src="js/meter.js"></script>
+</body>
+</html>

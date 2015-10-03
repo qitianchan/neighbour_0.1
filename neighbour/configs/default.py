@@ -22,3 +22,13 @@ class DefaultConfig(object):
     # Protection against form post fraud
     WTF_CSRF_ENABLED = True
     WTF_CSRF_SECRET_KEY = "reallyhardtoguess"
+
+
+    # TODO: 登陆转向
+    LOGIN_VIEW = "account.login"
+    REAUTH_VIEW = "account.reauth"
+    LOGIN_MESSAGE_CATEGORY = "error"
+
+    # URL Prefixes
+    ACCOUNT_URL_PREFIX = "/account"
+    TEST_URL_PREFIX = "/test"
