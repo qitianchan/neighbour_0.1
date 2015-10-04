@@ -63,18 +63,18 @@ if __name__ == '__main__':
     # from neighbour.models.groupon_order import GrouponOrder
     # from neighbour.models.groupon import Groupon
     # from neighbour.models.groupon_order import GrouponOrder
-    # from neighbour.models.house_info import HouseInfo
+    from neighbour.models.house_info import HouseInfo
     # from neighbour.models.valiate_info import ValiateInfo
     from neighbour.models.user import User
     # from neighbour.models.fix_order import FixOrder
     # from neighbour.models.house_fee import HouseFee
-    # from neighbour.models.building import Building
-    # from neighbour.models.cell import Cell
+    from neighbour.models.building import Building
+    from neighbour.models.cell import Cell
     from neighbour.models.areas import Areas
     from neighbour.models.residential_areas import ResidentialAreas
     # from neighbour.models.notice import Notice
     # from neighbour.models.info import Info
-    # # from neighbour.models.tenant import Tenant
+    from neighbour.models.tenant import Tenant
 
 
     # db.drop_all()

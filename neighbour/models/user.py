@@ -3,6 +3,7 @@ from neighbour.extensions import db
 from neighbour.utils.database import CRUDMixin
 from hashlib import sha1
 from neighbour.utils.helper import create_salt
+from neighbour.models.tenant import Tenant
 
 class User(db.Model, CRUDMixin):
     __tablename__ = 'user'
@@ -19,7 +20,10 @@ class User(db.Model, CRUDMixin):
     roles = db.Column(db.Integer)
     status = db.Column(db.SmallInteger)
 
-
+    tenants = db.relationship('Tenant',
+                              backref="user",
+                              primaryjoin="Tenant.user_id == User.id"
+                              )
     # groupon_orders = db.relationship('GrouponOrder',
     #                                  backref='user',
     #                                  primaryjoin='GrouponOrder.user_id == User.id')
@@ -28,9 +32,14 @@ class User(db.Model, CRUDMixin):
     #                                     backref='user',
     #                                     primaryjoin='ValiateInfo.user_id == User.id')
 
-    # house_infos = db.relationship('HouseInfo',
-    #                                backref='user',
-    #                                primaryjoin='HouseInfo.user_id == User.id')
+    @classmethod
+    def get_user_by_openid(cls, openid):
+        """
+        通过openid获取用户
+        :param openid: 微信openid
+        :return: 对应的用户
+        """
+        return cls.query.filter_by(wechat_openid=openid).first()
 
     def check_password(self, password):
         """Check passwords. If passwords match it returns true, else false"""
