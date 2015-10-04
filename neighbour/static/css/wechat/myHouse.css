@@ -1,0 +1,5 @@
+@charset "UTF-8";
+.my-house li {margin:5px 0;padding:0 10px;background-color: #fff;line-height: 40px;}
+.my-house .edit,.my-house .delete {color:#0099ff;float:right;}
+.my-house .delete {margin:0 0 0 30px;}
+.add-house {height:40px;line-height:40px;text-align: center;background-color:#fff; }

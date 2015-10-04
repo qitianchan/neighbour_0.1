@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>身份认证</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wechat/common.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wechat/submitForm.css')}}">
+</head>
+<body>
+<p class="village mt5" id="pSelectVillage"><span class="icon-back"></span><span id="pVillage"></span></p>
+
+<div class="row mt5" id="divProject">
+    <label class="key">项目</label>
+    <span class="val" id="spProject"></span>
+    <span class="icon-detail fr mt13"></span>
+</div>
+<div class="row mt5" id="divBuilding">
+    <label class="key">楼宇</label>
+    <span class="val" id="spBuilding"></span>
+    <span class="icon-detail fr mt13"></span>
+</div>
+<div class="row mt5" id="divRoom">
+    <label class="key">房号</label>
+    <span class="val" id="spRoom"></span>
+    <span class="icon-detail fr mt13"></span>
+</div>
+<div class="row mt5" id="divRole">
+    <label class="key">身份</label>
+    <span class="val" id="spRole"></span>
+    <span class="icon-detail fr mt13"></span>
+</div>
+<div class="row mt5">
+    <label class="key">姓名</label>
+    <input type="text" class="val" id="tbName"/>
+</div>
+<div class="row mt5">
+    <label class="key">手机</label>
+    <input type="text" class="val" id="tbPhone"/>
+</div>
+<div class="row mt5">
+    <label class="key">验证码</label>
+    <input type="text" class="val" id="tbVerifyCode" maxlength="6" style="width:60px;"/>
+    <input type="button" class="get-code fr" id="btnSendCode" value="发送验证码"/>
+</div>
+
+<button class="btn-large mt13" id="btnSubmit">提交认证</button>
+
+
+<script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/common.js')}}"></script>
+<script src="{{ url_for('static', filename='js/wechat/submitForm.js')}}"></script>
+
+<!--#include virtual="/wechat/iframe/selectVillage.shtml" -->
+</body>
+</html>

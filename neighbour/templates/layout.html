@@ -6,7 +6,20 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    {# for extra stylesheets. e.q. a template has to add something #}
+    {% block css %}
+    {% endblock %}
+
+    {# for various extra things #}
+    {% block head_extra %}
+    {% endblock %}
 </head>
+  <body>
     {% block content %}
     {% endblock %}
+    {# space for extra scripts - to use in other templates #}
+    {% block scripts %}
+    {% endblock %}
+  </body>
+
 </html>

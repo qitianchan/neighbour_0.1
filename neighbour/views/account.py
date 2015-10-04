@@ -3,14 +3,12 @@ from flask import Blueprint, request, redirect, render_template
 from neighbour.models.user import User
 from flask_login import login_user, current_user, logout_user, user_logged_in
 from neighbour.utils.request_params import get_request_params
+
 account = Blueprint('account', __name__)
-from neighbour.test.redirect_test import red
+
 
 @account.route('/login', methods=["GET", "POST"])
 def login():
-    return red()
-    # return redirect('http://www.baidu.com')
-    print u'重定向'
     request_params = get_request_params(request)
     name = request_params.get('name')
     password = request_params.get('password')

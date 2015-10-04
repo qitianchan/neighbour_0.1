@@ -5,6 +5,7 @@ from neighbour.wechat.navbar import wechat_navbar
 from neighbour.extensions import db, login_manager
 from neighbour.views.account import account
 from neighbour.views.test import test
+from neighbour.views.wechat import wechat
 
 def create_app(config=None):
     """
@@ -29,7 +30,7 @@ def configure_blueprint(app):
     app.register_blueprint(wechat_navbar)
     app.register_blueprint(account, url_prefix=app.config['ACCOUNT_URL_PREFIX'])
     app.register_blueprint(test, url_prefix=app.config['TEST_URL_PREFIX'])
-
+    app.register_blueprint(wechat, url_prefix=app.config['WECHAT_URL_PREFIX'])
 
 def configure_extensions(app):
     # Flask-SQLAlchemy

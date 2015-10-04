@@ -32,3 +32,4 @@ class DefaultConfig(object):
     # URL Prefixes
     ACCOUNT_URL_PREFIX = "/account"
     TEST_URL_PREFIX = "/test"
+    WECHAT_URL_PREFIX = "/wechat"

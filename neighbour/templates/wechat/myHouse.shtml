@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>我的房产</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wechat/common.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wechat/myHouse.css')}}">
+</head>
+<body>
+<ul class="my-house" id="ulHouse">
+</ul>
+
+<a href="verify/submitForm.shtml?type=add">
+    <p id="pAddHouse" class="add-house">增加二套房产</p>
+</a>
+
+<!-- 模板 -->
+<ul class="my-house" id="tempHouse" style="display: none;">
+    <li>
+        <span class="_address"></span>
+        <span class="_role"></span>
+        <br/>
+        <span class="_phone"></span>
+        <span class="click delete">删除</span>
+        <!--<a class="click edit">编辑</a>-->
+    </li>
+</ul>
+<script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/common.js')}}"></script>
+<script src="{{ url_for('static', filename='js/wechat/myHouse.js')}}"></script>
+</body>
+</html>

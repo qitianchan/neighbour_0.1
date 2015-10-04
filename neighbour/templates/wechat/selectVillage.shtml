@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/wechat/selectVillage.css')}}">
+<div id="divSelectVillage" class="select-frame" style="display: none;">
+    <p class="tip">请选择所在的小区</p>
+    <ul class="left" id="divArea">
+    </ul>
+    <ul class="right" id="divVillage">
+    </ul>
+</div>
+
+<script src="{{ url_for('static', filename='js/common.js')}}"></script>
+<script src="{{ url_for('static', filename='js/wechat/selectVillage.js')}}"></script>
