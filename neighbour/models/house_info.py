@@ -8,6 +8,9 @@ class HouseInfo(db.Model, CRUDMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     building_id = db.Column(db.Integer, db.ForeignKey('building.id'))
     # user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    room_number = db.Column(db.VARCHAR(12))
+    owner = db.Column(db.VARCHAR(255))
+    owner_phone = db.Column(db.VARCHAR(255))
     property_management_fee = db.Column(db.Integer)
     tv_fee = db.Column(db.Integer)
 
@@ -15,7 +18,8 @@ class HouseInfo(db.Model, CRUDMixin):
 
     fix_orders = db.relationship('FixOrder', backref='house_info', primaryjoin='FixOrder.house_info_id == HouseInfo.id')
 
-    valiate_infos = db.relationship('ValiateInfo', backref='house_info', primaryjoin='ValiateInfo.house_info_id == HouseInfo.id')
+    valiate_infos = db.relationship('ValiateInfo', backref='house_info',
+                                    primaryjoin='ValiateInfo.house_info_id == HouseInfo.id')
 
     users = db.relationship('User',backref='house_info',
                              primaryjoin='User.house_info_id == HouseInfo.id')

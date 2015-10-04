@@ -6,6 +6,7 @@ from neighbour.extensions import db, login_manager
 from neighbour.views.account import account
 from neighbour.views.test import test
 from neighbour.views.wechat import wechat
+from neighbour.controller.wechat_api import wechat_front
 
 def create_app(config=None):
     """
@@ -31,6 +32,7 @@ def configure_blueprint(app):
     app.register_blueprint(account, url_prefix=app.config['ACCOUNT_URL_PREFIX'])
     app.register_blueprint(test, url_prefix=app.config['TEST_URL_PREFIX'])
     app.register_blueprint(wechat, url_prefix=app.config['WECHAT_URL_PREFIX'])
+    app.register_blueprint(wechat_front, url_prefix=app.config['WECHAT_FRONT_URL_PREFIX'])
 
 def configure_extensions(app):
     # Flask-SQLAlchemy
@@ -68,10 +70,10 @@ if __name__ == '__main__':
     # from neighbour.models.house_fee import HouseFee
     # from neighbour.models.building import Building
     # from neighbour.models.cell import Cell
-    # from neighbour.models.residential_areas import ResidentialAreas
+    from neighbour.models.areas import Areas
+    from neighbour.models.residential_areas import ResidentialAreas
     # from neighbour.models.notice import Notice
     # from neighbour.models.info import Info
-    # from neighbour.models.areas import Areas
     # # from neighbour.models.tenant import Tenant
 
 

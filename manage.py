@@ -16,7 +16,7 @@ manager = Manager(app)
 
 
 # Run local server
-manager.add_command("runserver", Server("139.129.131.192", port=8002))
+manager.add_command("runserver", Server("127.0.0.1", port=8002))
 
 
 # @manager.command

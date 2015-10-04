@@ -8,7 +8,7 @@ class DefaultConfig(object):
     SEND_LOG = False
     # URI用”mysql://username:password@localhost/database?charset=utf8&use_unicode=0″
     # 这种格式可以解决中文英文混合返回utf8编码的问题，不报UnicodeDecodeError错误
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:aaaaaa@localhost/test'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:aaaaaa@localhost/test?charset=utf8&use_unicode=0'
     # SQLALCHEMY_DATABASE_URI = 'mysql://cheaboar:Wind1748@wind1748.mysql.rds.aliyuncs.com/cheaboar?charset=utf8&use_unicode=0'
 
     # This will print all SQL statements
@@ -33,3 +33,10 @@ class DefaultConfig(object):
     ACCOUNT_URL_PREFIX = "/account"
     TEST_URL_PREFIX = "/test"
     WECHAT_URL_PREFIX = "/wechat"
+    WECHAT_FRONT_URL_PREFIX = '/wechat_front'
+
+    # 角色
+    ROLE_ADMIN = 1          # ADMIN
+    ROLE_MANAGER = 2        # 小区管理员
+    ROLE_OWNER = 3          # 业主
+    ROLE_TENANT = 4         # 住客
