@@ -16,12 +16,12 @@ manager = Manager(app)
 
 
 # Run local server
-# manager.add_command("runserver", Server("139.129.131.192", port=8002))
+manager.add_command("runserver", Server("139.129.131.192", port=8002))
 
 
 # @manager.command
 # def initdb():
-#     """Creates the database."""
+#     """Creates the database."""cd
 #
 #     upgrade()
 #

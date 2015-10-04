@@ -3,9 +3,11 @@ __author__ = 'Chan'
 
 from wechat_sdk import WechatBasic
 from wechat_sdk.lib import disable_urllib3_warning
+from flask import request, redirect
 import redis
 import time
 from urllib import quote
+import requests
 
 class WechatBasicCache(WechatBasic):
     """
@@ -42,8 +44,8 @@ class WechatBasicCache(WechatBasic):
         #网页授权票据的参数
         self.__wechat_host = 'https://open.weixin.qq.com'
         self.__code_method = '/connect/oauth2/authorize?'
-        self.__access_token_method = '/sns/oauth2/access_token?'
-
+        self.__access_token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?'
+        self.__userinfo_url = 'https://api.weixin.qq.com/sns/userinfo'
 
         r = redis.Redis(host=redishost,port=redisport, db=0, password=redispasswd)
 
@@ -118,11 +120,15 @@ class WechatBasicCache(WechatBasic):
         self.grant_token()
         self.grant_jsapi_ticket()
 
-    def _get_code(self, redirect_uri='' ,scope='snsapi_base', state=1):
+    def _get_code(self, redirect_uri=None ,scope='snsapi_base', state=1):
         """
             获取网页收取的票据
+            :param redirect_uri:重定向的url，如果为None则为当前的url
+            :param scope:获取授权信息类型：snsapi_base->获取基本信息（openid）；snsapi_userinfo->获取详细信息
+            :param state：用于传送信息
         """
-        #https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect
+        if redirect_uri == None:
+            redirect_uri = request.url
         data = {
             'appid' : self.__appid,
             'redirect_uri' : quote(redirect_uri),
@@ -136,6 +142,67 @@ class WechatBasicCache(WechatBasic):
         url = self.__wechat_host + self.__code_method + params + '#wechat_redirect'
         return url
 
+    def _get_access_token(self, code):
+        """
+        根据授权码获取access_token:此处的access_token不同于普通的access_token
+        :param code: 授权码
+        """
+        data = {
+            'appid' : self.__appid,
+            'secret' : self.__appsecret,
+            'code' : code,
+            'grant_type' : 'authorization_code'
+        }
+        keys = data.keys()
+        params = '&'.join(['%s=%s' % (key, data[key]) for key in keys])
+
+        url = self.__access_token_url + params
+        r = requests.get(url)
+
+        return r.json()
+
+    def _get_userinfo(self, access_token, openid, lang='zh_CN'):
+        """
+            获取用户的详细信息
+        """
+        data = {
+            'access_token' : access_token,
+            'openid' : openid,
+            'lang' : lang
+        }
+        r = requests.get(self.__userinfo_url, data)
+        return r.json()
+
+
+    def authorize(self, redirct_uri=None, scope='snsapi_base', state=1, lang='zh_CN'):
+        """
+            网页授权接口
+            :param redirect_uri:重定向的url，如果为None则为当前的url
+            :param scope:获取授权信息类型：snsapi_base->获取基本信息（openid）；snsapi_userinfo->获取详细信息
+            :param state：用于传送信息
+        """
+        args = request.args
+        code = args.get('code')
+        state = args.get('state')
+
+        if code == None:
+            get_code_url = self._get_code(redirect_uri=redirct_uri, scope=scope, state=state)
+            return redirect(get_code_url)
+
+        access_token_result = self._get_access_token(code=code)
+
+        if access_token_result.get('errcode', None) != None:
+            raise Exception(access_token_result.get('errmsg'))
+
+        access_token = access_token_result['access_token']
+        openid = access_token_result['openid']
+
+        result = {
+            'openid' : openid
+        }
+        if scope == 'snsapi_userinfo':
+            result = self._get_userinfo(access_token, openid, lang=lang)
+        return result
 
 
 
