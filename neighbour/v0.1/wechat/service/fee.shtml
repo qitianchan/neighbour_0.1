@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>水气表抄送</title>
+    <link rel="stylesheet" href="/wechat/css/common.css">
+    <link rel="stylesheet" href="css/fee.css">
+</head>
+<body>
+
+<p class="address" id="pAddress"></p>
+
+<div class="month-nav clear">
+    <div class="left on" id="divPrevMonth">
+        <span class="icon-back"></span>
+        上个月
+    </div>
+    <div class="middle" id="divDate">
+        <span class="month"></span>
+        <span class="year"></span>
+    </div>
+    <div class="right" id="divNextMonth">
+        下个月
+        <span class="icon-detail"></span>
+    </div>
+</div>
+
+<ul class="fee-list" id="ulList">
+</ul>
+
+<p class="total">待缴总计<span class="money fr on" id="spTotal">256.9</span></p>
+
+<button class="btn-large">提交</button>
+
+<div id="divSelectMonth" style="display: none;">
+    <div class="muslin"></div>
+    <div class="month-list" id="divMonthList">
+    </div>
+</div>
+
+<!-- 模板 -->
+<ul id="temp" style="display: none">
+    <li>
+        <span class="_name"></span>
+        <span class="icon-detail fr mt20 _show"></span>
+        <span class="money fr _money"></span>
+        <div class="fee-detail _detail" style="display: none">
+        </div>
+    </li>
+</ul>
+
+<script src="/wechat/js/jquery.min.js"></script>
+<script src="/wechat/js/common.js"></script>
+<script src="js/fee.js"></script>
+</body>
+</html>

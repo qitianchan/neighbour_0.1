@@ -1,0 +1,23 @@
+@charset "UTF-8";
+body{background-color: #fff;}
+
+.address {line-height:50px;height:50px;color:#fff;background-color: #0165ff;text-indent:10px;}
+
+.month-nav>div{float:left;width:33.33%;line-height: 50px;text-align: center;}
+.month-nav .year {position:absolute;margin:18px 0 0 -36px;font-size:12px;}
+.month-nav .left,.month-nav .right {color:#aaa;}
+.month-nav .on{color:#000;}
+.month-nav .icon-detail,.month-nav .icon-back {visibility: hidden;}
+.month-nav .on .icon-detail,.month-nav .on .icon-back {visibility: visible;}
+.fee-list>li {line-height: 50px;/*height:50px;*/margin:0 20px;padding:0 10px 0 0;border-bottom:solid 1px #999;}
+.fee-list .money {margin:0 10px 0 0;}
+.fee-list .paid .money,.fee-list .unknown .money {color:#aaa;}
+.fee-list .unpaid .money {color:#0acd0a;}
+.fee-list .unpaid.money:before,.fee-list .paid .money:before {content:"￥"}
+.fee-list .unknown .icon-detail {visibility: hidden;}
+.fee-detail {margin:0 0 10px 0;font-size:12px;line-height: 30px;}
+.fee-detail>span {display:inline-block;min-width:120px;}
+.total {line-height:50px;margin: 0 20px 100px 20px;padding:0 10px 0 0;}
+
+.month-list {position:absolute;top:0;left:0;margin:100px 0 0 0;padding:0 0 10px 0;background:#fff;z-index: 999;}
+.month-list .box {display:inline-block;margin:10px 0 0 10px;padding:10px;/*width:50px;height:50px;*/font-size:12px;text-align:center;background:#e4e4e4;}
