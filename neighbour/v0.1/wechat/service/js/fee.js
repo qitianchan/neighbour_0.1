@@ -152,7 +152,7 @@
          * @param k
          */
         function addDateOption(y,m,k){
-            var htmlStr = "<div class='box' key='"+k+"'>"+m+"<br/>"+y+"</div>";
+            var htmlStr = "<div class='box' key='"+k+"'>"+m+"月<br/>"+y+"</div>";
             $divMonthList.append(htmlStr);
         }
 

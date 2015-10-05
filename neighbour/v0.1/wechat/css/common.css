@@ -24,39 +24,13 @@ body {
 
 a {text-decoration: none;}
 
-.clear:after{
-    display:block;
-    visibility:hidden;
-    content:"";
-    height:0;
-    font-size:0;
-    clear:both;
-}
+.clear:after{ display:block;visibility:hidden;content:"";height:0;font-size:0;clear:both;}
 .clear{*zoom:1;}
 
-.row {
-    height: 40px;
-    width: 100%;
-    background-color: #fff;
-    padding: 0 16px;
-    line-height: 40px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.row.on{
-    background-color:#efeff4;
-}
-
-.key {
-    color: #373737;
-    min-width: 70px;
-    display: inline-block;
-}
-
-.val {
-    border: 0;
-    color: #939393;
-}
+.row {height: 40px;width: 100%;background-color: #fff;padding: 0 16px;line-height: 40px;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.row.on{background-color:#efeff4;}
+.row .key {color: #373737;min-width: 70px;display: inline-block;}
+.row .val{ border: 0; color: #939393;}
 
 .btn-large {
     display:block;
@@ -64,7 +38,8 @@ a {text-decoration: none;}
     width:92%;
     height:40px;
     color:#fff;
-    background-color: #009b63;
+    /*background-color: #009b63;*/
+    background-color: #3dce3d;
     border-radius: 5px;
     border:none;
     text-align: center;
@@ -75,7 +50,7 @@ a {text-decoration: none;}
     width:98px;
     height:24px
     color: #fff;
-    background-color: #009b63;
+    background-color: #3dce3d;
     border-radius: 5px;
     border:none;
     line-height: 24px;
@@ -86,7 +61,8 @@ a {text-decoration: none;}
 
 }
 .btn-large:active,.btn-middle:active,.btn-small:active{
-    background-color: #038153;
+    /*background-color: #038153;*/
+    background-color: #090;
 }
 .disable,.disable:active,button[disabled] {
     background-color: #c3c3c3;
@@ -102,6 +78,8 @@ a {text-decoration: none;}
 /*查看更多的图标*/
 .icon-more { display:inline-block;width:16px;height:16px;-webkit-transform:rotate(90deg); transform:rotate(90deg); }
 .icon-more:after{content:"》";display:block;font-size:0.5em;text-align: left;}
+
+.icon-add {display: inline-block;width:50px;height:50px;border:solid 1px #c5c5c5;background: url(../images/add.png) no-repeat 0 0;}
 
 .muslin {display:block;margin:0;padding:0;width:100%;height:100%;position:absolute;top:0;left:0;background-color: #212121;opacity: 0.6;z-index:998;}
 

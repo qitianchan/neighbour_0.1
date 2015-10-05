@@ -1,0 +1,8 @@
+@charset "UTF-8";
+body{background-color: #fcfcfc;}
+
+.address {line-height:50px;height:50px;color:#fff;background-color: #0165ff;text-indent:10px;}
+
+.repairs-key {display: block;line-height: 30px;text-indent: 20px;margin:10px 0 0 0;}
+.repairs-val {display:block;margin:0 0 0 20px;padding:5px;}
+.repairs-img {margin:10px 0 0 20px;}

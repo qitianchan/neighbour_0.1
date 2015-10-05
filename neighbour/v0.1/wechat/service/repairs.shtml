@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>物业报修</title>
+    <link rel="stylesheet" href="/wechat/css/common.css">
+    <link rel="stylesheet" href="css/repairs.css">
+</head>
+<body>
+
+<p class="address" id="pAddress"></p>
+
+<label for="taInfo" class="repairs-key">报修内容（必填）</label>
+
+<textarea class="repairs-val _auto-width" id="taInfo" rows="6" maxlength="200" placeholder="请详细描述需要维护的内容（限200字）"></textarea>
+
+<div class="repairs-img">
+    <span class="icon-add"></span>
+</div>
+
+<label for="taTime" class="repairs-key">上门维修时间</label>
+
+<textarea class="repairs-val _auto-width" id="taTime" rows="3" maxlength="200" placeholder="填写可上门维修时间，比如周六早上"></textarea>
+
+<label for="taTime" class="repairs-key">物业地址</label>
+
+<textarea class="repairs-val _auto-width" id="taAddress" rows="3" maxlength="200" placeholder="填写物业地址，可选"></textarea>
+
+<button class="btn-large mt13">报修</button>
+
+<script src="/wechat/js/jquery.min.js"></script>
+<script src="/wechat/js/common.js"></script>
+<script src="js/repairs.js"></script>
+</body>
+</html>
