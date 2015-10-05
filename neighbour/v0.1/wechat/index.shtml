@@ -62,5 +62,16 @@
         </div>
     </div>
 </a>
+
+<a href="service/repairsRecord.shtml">
+    <div class="row mt10">
+        <label class="key">我的报修记录</label>
+
+        <div class="fr val">
+            <span class=""></span>
+            <span class="icon-detail"></span>
+        </div>
+    </div>
+</a>
 </body>
 </html>
