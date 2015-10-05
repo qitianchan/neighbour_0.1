@@ -404,4 +404,5 @@ var TRUE="1",FALSE="0",
     ROLE_TYPE = {0:"业主",1:"家属",2:"房客"},
     FEE_STATUS_TYPE = {0:"未出",1:"已出未缴",2:"已缴"};
 
-var FEE_STATUS = {UNKNOWN:"0",UNPAID:"1",PAID:"2"};
+var FEE_STATUS = {UNKNOWN:"0",UNPAID:"1",PAID:"2"},
+    REPAIRS_STATUS = {UNHANDLED:0,ACTIVE:1,FINISH:2};

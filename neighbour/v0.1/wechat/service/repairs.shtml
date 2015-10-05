@@ -25,9 +25,15 @@
 
 <label for="taTime" class="repairs-key">物业地址</label>
 
-<textarea class="repairs-val _auto-width" id="taAddress" rows="3" maxlength="200" placeholder="填写物业地址，可选"></textarea>
+<textarea class="repairs-val _auto-width" id="taAddress" rows="3" maxlength="50" placeholder="填写物业地址，可选"></textarea>
 
-<button class="btn-large mt13">报修</button>
+<button class="btn-large mt13 mb50" id="btnSubmit" style="display: none">报修</button>
+
+<div id="div4Modify" class="mt13 mb50" style="display:none;text-align: center;">
+    <button class="btn-middle error" id="btnCancel">撤销</button>
+
+    <button class="btn-middle" id="btnPush">催一下</button>
+</div>
 
 <script src="/wechat/js/jquery.min.js"></script>
 <script src="/wechat/js/common.js"></script>
