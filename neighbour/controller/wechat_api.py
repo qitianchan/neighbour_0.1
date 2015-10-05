@@ -11,6 +11,8 @@ def get_current_user_openid():
     return '131243214'
 
 
+
+
 @wechat_front.route('/get_areas', methods=['GET'])
 def get_areas():
     residential_areas = ResidentialAreas.get_areas()
