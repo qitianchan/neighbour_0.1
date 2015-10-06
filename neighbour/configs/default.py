@@ -40,3 +40,7 @@ class DefaultConfig(object):
     ROLE_MANAGER = 2        # 小区管理员
     ROLE_OWNER = 3          # 业主
     ROLE_TENANT = 4         # 住客
+
+    #水煤表类型
+    GAS = 0                 #燃气
+    WATER = 1               #水表

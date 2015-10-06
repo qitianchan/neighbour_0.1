@@ -2,6 +2,7 @@
 from neighbour.extensions import db
 from neighbour.utils.database import CRUDMixin
 from neighbour.models.tenant import Tenant
+from neighbour.models.house_fee import HouseFee
 from sqlalchemy import and_
 
 
@@ -48,7 +49,7 @@ class HouseInfo(db.Model, CRUDMixin):
                                   backref="house",
                                   primaryjoin="Tenant.house_info_id == HouseInfo.id"
                             )
-    # house_fees = db.relationship('HouseFee', backref='house_info', primaryjoin='HouseFee.house_info_id == HouseInfo.id')
+    house_fees = db.relationship('HouseFee', backref='house_info', primaryjoin='HouseFee.house_info_id == HouseInfo.id')
 
     # fix_orders = db.relationship('FixOrder', backref='house_info', primaryjoin='FixOrder.house_info_id == HouseInfo.id')
 

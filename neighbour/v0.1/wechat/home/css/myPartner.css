@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.address {line-height:50px;height:50px;color:#fff;background-color: #0165ff;text-indent:10px;}
+
+.partner-list>li {padding:0 10px 10px 10px;border-top:solid 1px #999;background-color: #fff;}
+.partner-list>li:first-child {border-top:none;}
+.partner-list .name {line-height: 30px;}
+.partner-list .phone {padding:2px 3px;font-size: 12px;background-color: #c3c3c3;}
+.partner-list .del {margin: -10px 0 0 0;float:right;color:#0099ff;}

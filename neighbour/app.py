@@ -67,7 +67,7 @@ if __name__ == '__main__':
     # from neighbour.models.valiate_info import ValiateInfo
     from neighbour.models.user import User
     # from neighbour.models.fix_order import FixOrder
-    # from neighbour.models.house_fee import HouseFee
+    from neighbour.models.house_fee import HouseFee
     from neighbour.models.building import Building
     from neighbour.models.cell import Cell
     from neighbour.models.areas import Areas

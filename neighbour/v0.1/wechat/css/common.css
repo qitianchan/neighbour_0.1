@@ -3,7 +3,7 @@
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
 dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
 pre, /* text formatting elements 文本格式元素 */
-fieldset, lengend, button, input, textarea, /* form elements 表单元素 */
+fieldset, legend, button, input, textarea, /* form elements 表单元素 */
 th, td { /* table elements 表格元素 */
     margin: 0;
     padding: 0;
@@ -31,6 +31,7 @@ a {text-decoration: none;}
 .row.on{background-color:#efeff4;}
 .row .key {color: #373737;min-width: 70px;display: inline-block;}
 .row .val{ border: 0; color: #939393;}
+.row .input {border:0;color:#939393;padding:3px 5px;}
 
 .btn-large,.btn-middle,.btn-small,.btn-normal {color:#fff;/*background-color: #009b63;*/background-color: #3dce3d;border:none;text-align: center;}
 .btn-large { display:block;margin: 0 auto;width:92%;height:40px;border-radius: 5px;line-height: 40px;font-size: 16px;}
