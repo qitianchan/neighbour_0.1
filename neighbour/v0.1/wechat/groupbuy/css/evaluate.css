@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+.star-wrap {height:50px;line-height: 50px;padding:0 10px;background-color:#fff;}
+
+.content {display: block;width:100%;padding:10px;}
+
+.tip {position:absolute;right:10px;margin:-26px 0 0 0;}

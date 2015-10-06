@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>确认订单</title>
+    <link rel="stylesheet" href="/wechat/css/common.css">
+    <link rel="stylesheet" href="css/submitOrder.css">
+</head>
+<body>
+
+<div class="row-large mt13">
+    <span class="">稻花香五常大米，精选优质东北大米，5KG</span>
+    <span class="fr gray">55元</span>
+</div>
+
+<div class="row-large bt">
+    <span>数量</span>
+    <span class="fr" style="height:60px;">
+        <span id="btnMinus" class="minus">-</span>
+        <input id="tbNum" type="tel" class="num" value="1" />
+        <span id="btnPlus" class="plus">+</span>
+    </span>
+</div>
+
+<div class="row-large bt">
+    <span>订单总价</span>
+    <span class="fr red">55元</span>
+</div>
+
+<div class="row-large mt13">
+    <span>收货人地址</span>
+    <span class="fr gray">济南花园七号805</span>
+</div>
+
+<div class="row-large bt">
+    <span>收货人</span>
+    <span class="fr gray">魏佳志</span>
+</div>
+
+<div class="row-large bt">
+    <span>联系电话</span>
+    <span class="fr gray">13845678901</span>
+</div>
+
+<p class="tip">限时抢购后统一发货</p>
+
+<button class="btn-large mt13">立即支付</button>
+
+<script src="/wechat/js/jquery.min.js"></script>
+<script src="/wechat/js/common.js"></script>
+<script src="js/submitOrder.js"></script>
+</body>
+</html>

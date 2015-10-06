@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>我的团购订单</title>
+    <link rel="stylesheet" href="/wechat/css/common.css">
+    <link rel="stylesheet" href="css/myOrder.css">
+</head>
+<body>
+
+<ul class="nav-bar" id="ulNav">
+    <li class="on" key="0">全部</li>
+    <li key="1">待收货</li>
+    <li key="2">待评价</li>
+</ul>
+
+<ul class="order-list" id="ulOrder">
+
+</ul>
+
+<ul id="temp" style="display: none;">
+    <li>
+        <img class="pic _pic" alt="" src=""/>
+        <span class="title _title"></span>
+        <span class="detail _detail"></span><br/>
+        <span class="status _status"></span>
+        <span class="action _action"></span>
+    </li>
+</ul>
+
+<script src="/wechat/js/jquery.min.js"></script>
+<script src="/wechat/js/common.js"></script>
+<script src="js/myOrder.js"></script>
+</body>
+</html>

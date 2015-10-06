@@ -402,7 +402,9 @@
 
 var TRUE="1",FALSE="0",
     ROLE_TYPE = {0:"业主",1:"家属",2:"房客"},
-    FEE_STATUS_TYPE = {0:"未出",1:"已出未缴",2:"已缴"};
+    FEE_STATUS_TYPE = {0:"未出",1:"已出未缴",2:"已缴"},
+    ORDER_STATUS_TYPE = {0:"失效",1:"新建",2:"提交",3:"已受理",4:"已发货",5:"已收货",6:"已评价"};
 
 var FEE_STATUS = {UNKNOWN:"0",UNPAID:"1",PAID:"2"},
-    REPAIRS_STATUS = {UNHANDLED:0,ACTIVE:1,FINISH:2};
+    REPAIRS_STATUS = {UNHANDLED:0,ACTIVE:1,FINISH:2},
+    ORDER_STATUS = {INVALID:"0",NEW:"1",SUBMIT:"2",ACCEPT:"3",DELIVERY:"4",RECEIPT:"5",EVALUATED:"6"};

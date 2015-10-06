@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>评价</title>
+    <link rel="stylesheet" href="/wechat/css/common.css">
+    <link rel="stylesheet" href="css/evaluate.css">
+</head>
+<body>
+
+<div class="star-wrap mt13">
+    <span>评分</span>
+    <span class="star"></span>
+</div>
+
+<textarea class="content mt13" rows="6" maxlength="200" placeholder="商品质量如何，满意吗？" id="taContent"></textarea>
+
+<span class="tip" id="spTip">0/200</span>
+
+<button class="btn-large mt13" id="btnSubmit">发布</button>
+
+<script src="/wechat/js/jquery.min.js"></script>
+<script src="/wechat/js/common.js"></script>
+<script src="js/evaluate.js"></script>
+</body>
+</html>

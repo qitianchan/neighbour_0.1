@@ -33,10 +33,12 @@ a {text-decoration: none;}
 .row .val{ border: 0; color: #939393;}
 .row .input {border:0;color:#939393;padding:3px 5px;}
 
+.row-large {height:60px;line-height: 60px;padding:0 10px;background-color: #fff;}
+
 .btn-large,.btn-middle,.btn-small,.btn-normal {color:#fff;/*background-color: #009b63;*/background-color: #3dce3d;border:none;text-align: center;}
 .btn-large { display:block;margin: 0 auto;width:92%;height:40px;border-radius: 5px;line-height: 40px;font-size: 16px;}
 .btn-middle { display:inline-block;width:42%;height:40px;border-radius: 5px;line-height: 40px;font-size: 16px;}
-.btn-normal { display:inline-block;width:98px;height:24px;border-radius: 5px;line-height: 24px;}
+.btn-normal { display:inline-block;width:98px;height:24px;border-radius: 2px;line-height: 24px;}
 .btn-small { display:inline-block;padding:2px 3px;border-radius: 2px;}
 .btn-large:active,.btn-middle:active,.btn-small:active{ /*background-color: #038153;*/ background-color: #090; }
 .error {color:#fff;background-color:#F25561;}
