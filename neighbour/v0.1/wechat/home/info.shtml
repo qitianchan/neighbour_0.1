@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>个人信息</title>
+    <link rel="stylesheet" href="/wechat/css/common.css">
+    <link rel="stylesheet" href="css/info.css">
+</head>
+<body>
+
+<div class="avatar"></div>
+<a href="myHouse.shtml">
+    <div class="row">
+        <label class="key">我的房产</label>
+        <span class="icon-detail fr mt13"></span>
+    </div>
+</a>
+
+<a href="myPartner.shtml">
+    <div class="row bt">
+        <label class="key">我的租户/家属</label>
+        <span class="icon-detail fr mt13"></span>
+    </div>
+</a>
+
+<a href="../service/fee.shtml">
+    <div class="row mt5">
+        <label class="key">缴费账单</label>
+        <span class="icon-detail fr mt13"></span>
+    </div>
+</a>
+
+<a href="myHouse.shtml">
+    <div class="row bt">
+        <label class="key">团购订单</label>
+        <span class="icon-detail fr mt13"></span>
+    </div>
+</a>
+
+<a href="../service/repairsRecord.shtml">
+    <div class="row bt">
+        <label class="key">报修记录</label>
+        <span class="icon-detail fr mt13"></span>
+    </div>
+</a>
+
+<script src="/wechat/js/jquery.min.js"></script>
+<script src="/wechat/js/common.js"></script>
+<script src="js/info.js"></script>
+</body>
+</html>

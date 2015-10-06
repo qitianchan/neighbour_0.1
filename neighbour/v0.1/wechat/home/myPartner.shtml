@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>我的家属/租户</title>
+    <link rel="stylesheet" href="/wechat/css/common.css">
+    <link rel="stylesheet" href="css/myPartner.css">
+</head>
+<body>
+
+<p class="address" id="pAddress"></p>
+
+<ul class="partner-list mt13" id="ulPartner">
+</ul>
+
+<!-- 模板 -->
+<ul id="temp" style="display: none;">
+    <li>
+        <span class="name _name"></span><br/>
+        <span class="phone _phone"></span>
+        <span class="del">删除</span>
+    </li>
+</ul>
+
+<script src="/wechat/js/jquery.min.js"></script>
+<script src="/wechat/js/common.js"></script>
+<script src="js/myPartner.js"></script>
+</body>
+</html>
