@@ -8,8 +8,8 @@ class DefaultConfig(object):
     SEND_LOG = False
     # URI用”mysql://username:password@localhost/database?charset=utf8&use_unicode=0″
     # 这种格式可以解决中文英文混合返回utf8编码的问题，不报UnicodeDecodeError错误
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:000000@localhost/test?charset=utf8&use_unicode=0'
-    # SQLALCHEMY_DATABASE_URI = 'mysql://cheaboar:Wind1748@wind1748.mysql.rds.aliyuncs.com/cheaboar?charset=utf8&use_unicode=0'
+    # SQLALCHEMY_DATABASE_URI = 'mysql://root:000000@localhost/test?charset=utf8&use_unicode=0'
+    SQLALCHEMY_DATABASE_URI = 'mysql://cheaboar:Wind1748@wind1748.mysql.rds.aliyuncs.com/cheaboar?charset=utf8&use_unicode=0'
 
     # This will print all SQL statements
     SQLALCHEMY_ECHO = True

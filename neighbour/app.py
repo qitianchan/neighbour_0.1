@@ -59,10 +59,11 @@ def login_configure(app):
 
 if __name__ == '__main__':
     app = create_app()
-    # from neighbour.models.groupon import Groupon
-    # from neighbour.models.groupon_order import GrouponOrder
-    # from neighbour.models.groupon import Groupon
-    # from neighbour.models.groupon_order import GrouponOrder
+    from neighbour.models.product import Product
+    from neighbour.models.product_image import ProductImage
+    from neighbour.models.groupon_order import GrouponOrder
+    from neighbour.models.groupon import GrouponOrderAreaOccocs
+    from neighbour.models.groupon import Groupon
     from neighbour.models.house_info import HouseInfo
     # from neighbour.models.valiate_info import ValiateInfo
     from neighbour.models.user import User
