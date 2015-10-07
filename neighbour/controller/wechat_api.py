@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from neighbour.models.residential_areas import ResidentialAreas
-from flask import Blueprint, jsonify, request, session, redirect, url_for
+from flask import Blueprint, jsonify, request, session, redirect, url_for, send_file, render_template
 from neighbour.models.user import User
 from neighbour.models.house_info import UserHouseTable
 from neighbour.models.house_fee import HouseFee
@@ -10,7 +10,22 @@ from neighbour.extensions import db
 from neighbour.configs.default import DefaultConfig
 import time
 from sqlalchemy.exc import IntegrityError
+from neighbour.models.house_info import HouseInfo
+from neighbour.models.house_info import UserHouseTable
+from neighbour.models.fix_order import FixOrder
+from neighbour.models.fix_order_img import FixOrderImg
+import time
+from neighbour.configs.default import DefaultConfig as Config
+from neighbour.extensions import db
+from uuid import uuid1
+import os
+from neighbour.utils.helper import ret_dict, get_all_element_in_list
 
+
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = os.path.normpath(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                              'static/upload/fix_order_img'))
 
 def get_current_user_openid():
     return '131243214'
@@ -137,10 +152,10 @@ def update_house_info():
         if user_house:
             user_house.save()
         user.save()
-    except Exception, ex:
+    except Exception:
         ret = {
             'retCode':'5000',
-            'retMsg': ex.message
+            'retMsg': Exception.message
         }
     return jsonify(ret)
 
@@ -241,6 +256,7 @@ def get_bill():
     last_mon = None
     next_year = None
     next_mon = None
+
     def get_last_mon(year, mon):
         last_mon = None
         last_year = None
@@ -386,7 +402,6 @@ def get_bill():
             if fees_dict.has_key(last_mon):
                 ret['lastMonth'] = str(last_year) + "%02d" % last_mon
 
-
         if fees_dict.has_key(next_mon):
             ret['nextMonth'] = str(next_year) + "%02d" % next_mon
 
@@ -396,23 +411,168 @@ def get_bill():
     return jsonify(ret)
 
 
-
 @wechat_front.route('/test')
 def test():
     return str(session['current_user_id'])
 
 
-if __name__ == "__main__":
-    monthList = [str(2015) + "%02d" % mon for mon in range(1, 13)]
-    print monthList
-    print "%02d" % 11
-    year_mon = '03'
-    year = int(year_mon[:4])
-    print year
+@wechat_front.route('/delete_house_info', methods=['GET', 'POST'])
+def delete_house_info():
+    if request.method == 'POST':
+        house_id = request.form.get('house_code')
+        if house_id is None:
+            return jsonify({
+                'retCode': '3000',
+                'retMsg': '参数错误'
+            })
+        # TODO get_current_user_openid()  未实现
+        user = User.get_user_by_openid(get_current_user_openid())
+        if user:
+            user_id = user.id
+            user2house = UserHouseTable.get_user_house(user_id, house_id)
+            if user2house:
+                db.session.delete(user2house)
+                db.session.commit()
+                return jsonify({
+                    'retCode': '0000',
+                    'retMsg': '删除成功'
+                })
+            else:
+                # 不错在用户的对应关系
+                return jsonify({
+                    'retCode': '3000',
+                    'retMsg': '没有对应的关系'
+                })
+    return jsonify({
+        'retCode': '5000',
+        'retMsg': '未知错误'
+    })
+
+
+@wechat_front.route('/fix_order', methods=['GET', 'POST'])
+def fix_order():
+    # 获取参数
+    if request.method != 'POST':
+        return jsonify({
+            'retCode': '3000',
+            'retMsg': '没有对应的关系'
+        })
+
+    house_code = request.args.get('house_code')
+    content = request.args.get('content')
+    timestr = request.args.get('timestr')
+    addr = request.args.get('addr')
+
+    # 保存修理订单
+    fix_order = FixOrder()
+    fix_order.house_info_id = house_code
+    fix_order.problem = content
+    fix_order.time = timestr
+    fix_order.create_time = int(time.time())
+    fix_order.status = Config.FIX_ORDER_STATUS_IN_HAND
+
+    db.session.add(fix_order)
+    db.session.flush()
+
+    # 保存图片
+    for img_name in request.files.keys():
+        img = request.files[img_name]
+        if len(img_name.split('.')) >= 2:
+            img_name = uuid1().hex + '.' + img_name.split('.')[-1]
+        else:
+            img_name = uuid1().hex
+
+        img.save(UPLOAD_FOLDER + '\\' + img_name)
+
+        # img.save(img.filename.encode('utf8'))
+        fix_order_img = FixOrderImg()
+        fix_order_img.img_name = img_name
+        fix_order_img.fix_order_id = fix_order.id
+        db.session.add(fix_order_img)
     try:
-        mon = int(year_mon[4:])
-    except ValueError as ex:
-        print ex.message
+        db.session.commit()
+    except Exception, e:
+        db.session.rollback()
+        raise e
+    return jsonify(ret_dict('0000'))
 
-    print 3 + None
 
+@wechat_front.route('/fix_order_list', methods=['GET', 'POST'])
+def fix_order_list():
+    open_id = get_current_user_openid()
+    user = User.get_user_by_openid(open_id)
+    if user:
+        # 获取所有的修理订单
+        fix_order_list = []
+        for accocs in user.house_accocs:
+            house = accocs.house
+            if house:
+                fix_order_list.append(house.fix_orders)
+
+        fix_order_list = get_all_element_in_list(fix_order_list)
+        # 格式化返回数据
+        ret = ret_dict()
+        data_list = []
+
+        for order in fix_order_list:
+            data = {
+                'fixOrderID': order.id,
+                'content': order.problem,
+                'timeStr': order.time,
+                'status': order.status
+            }
+            data_list.append(data)
+        ret['fixOrderList'] = data_list
+        return jsonify(ret)
+    else:
+        return jsonify(ret_dict('3000'))
+
+
+@wechat_front.route('/get_fix_order_img/<img_name>')
+def get_fix_order_img(img_name):
+    # TODO: 使用Nginx作为静态文件的服务器
+    return send_file(os.path.join(UPLOAD_FOLDER, img_name))
+
+
+@wechat_front.route('/test_fix_img')
+def test_fix_img():
+    return render_template('wechat/fix_img.html')
+
+
+@wechat_front.route('/get_fix_order_profile/<fix_order_id>')
+def get_fix_order_profile(fix_order_id):
+    # 获取基本信息
+    fix_order = FixOrder.get_by_id(fix_order_id)
+    if fix_order is None:
+        return ret_dict('3000')
+    house = fix_order.house_info
+    data = {
+        'houseCode': fix_order.house_info_id,
+        'content': fix_order.problem,
+        'timeStr': fix_order.time,
+        'addr': house.building.cell.cell_name + house.building.building_name + house.room_number,
+        'status': fix_order.status
+    }
+
+    # 获取图片列表，返回图片的url
+    imgs = fix_order.imgs
+    imgURLs = []
+    for img in imgs:
+        img_name = get_fix_order_img_url(img.img_name)
+        imgURLs.append(img_name)
+    data['imgURLs'] = imgURLs
+    ret = ret_dict()
+    ret['fixOrder'] = data
+    return jsonify(ret)
+
+
+
+def get_fix_order_img_url(img_name):
+    # TODO: 如果用Nginx作为静态文件服务器，这个函数需要改写
+    return url_for('wechat_front.get_fix_order_img', img_name=img_name)
+
+
+
+
+if __name__ == "__main__":
+    print os.path.join(UPLOAD_FOLDER, '23.jpg')
