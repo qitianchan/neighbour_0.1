@@ -20,7 +20,9 @@
     </span>
 </div>
 
-<textarea class="content mt13" rows="6" maxlength="200" placeholder="商品质量如何，满意吗？" id="taContent"></textarea>
+<div class="content-wrap mt13">
+    <textarea class="content" rows="6" cols="auto" maxlength="200" placeholder="商品质量如何，满意吗？" id="taContent"></textarea>
+</div>
 
 <span class="tip" id="spTip">0/200</span>
 

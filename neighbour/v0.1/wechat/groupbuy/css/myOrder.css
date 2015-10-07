@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.nav-bar {background-color: #fff;overflow: hidden;}
+.nav-bar {background-color: #fff;overflow: hidden;border-bottom: solid 1px #999;}
 .nav-bar>li {float:left;line-height: 50px;display:inline-block;width:33.33%;color:#939393;text-align: center;}
 .nav-bar>li.on {color:#0165ff;}
 .nav-bar>li.on:after {content:"";display: block;margin:0 auto;width:40px;height:2px;background-color: #0165ff;}

@@ -6,8 +6,6 @@
 
     $(function(){
 
-        $("._auto-width").width($(document).width()-50);
-
         // test
         var addressList = [{code:"01",address:"凤凰小区阳光花园5-501"},{code:"02",address:"天骄豪庭1001号"}];
 

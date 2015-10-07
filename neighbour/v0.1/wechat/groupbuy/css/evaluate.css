@@ -13,6 +13,7 @@
 .stars-1 {background-position: -96px 0;}
 .stars-0 {background-position: -120px 0;}
 
-.content {display: block;width:100%;padding:10px;border:none;}
+.content-wrap {padding:10px;background-color: #fff;}
+.content {display: block;width:100%;border:none;}
 
 .tip {position:absolute;right:10px;margin:-26px 0 0 0;}
