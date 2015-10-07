@@ -19,6 +19,7 @@ class UserHouseTable(db.Model, CRUDMixin):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     house_info_id = db.Column(db.Integer, db.ForeignKey('house_info.id'), primary_key=True)
     user_type = db.Column(db.Integer)
+    user_phone = db.Column(db.String(15))
     user = db.relationship('User', backref="house_accocs")
 
     @classmethod

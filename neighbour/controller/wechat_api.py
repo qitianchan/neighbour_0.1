@@ -98,21 +98,21 @@ def get_user_house_info():
     openid = get_current_user_openid()
     user = User.get_user_by_openid(openid)
     info_list = []
-    info = {}
     ret = {}
     if user:
         for accocs in user.house_accocs:
             house = accocs.house
             if house:
+                info = {}
                 info['houseCode'] = house.id
                 info['address'] = house.building.cell.cell_name + house.building.building_name + house.room_number   # 小区 + 楼栋 +　门牌号
                 info['userType'] = accocs.user_type
+                info['userPhone'] = accocs.user_phone
                 info_list.append(info)
 
                 ret = {
                     'retCode': '0000',
                     'retMsg': 'success',
-                    'userPhone': user.phone,
                     'houseInfoList': info_list
                 }
             else:
