@@ -4,6 +4,7 @@ from flask import Blueprint, jsonify, request, session, redirect, url_for, send_
 from neighbour.models.user import User
 from neighbour.models.house_info import UserHouseTable
 from neighbour.models.house_fee import HouseFee
+from neighbour.models.tenant import Tenant
 from sqlalchemy import and_, select
 wechat_front = Blueprint('wechat_front', __name__)
 from neighbour.extensions import db
@@ -411,6 +412,46 @@ def get_bill():
     return jsonify(ret)
 
 
+
+@wechat_front.route('/get_tenant')
+def get_tenant():
+    """
+    获取房子住户
+    :return:
+    """
+    house_info_id = request.args.get('house_code')
+    tenants = Tenant.get_tenants(house_info_id=house_info_id)
+    ret = {
+        'retCode': '0000',
+        'retMsg': '',
+        'tenantList': [
+            {
+                'user_id': tenant.id,
+                'name': tenant.name,
+                'phone': tenant.phone,
+                'type': tenant.tenant_type
+            }for tenant in tenants
+        ]
+    }
+
+    return jsonify(ret)
+
+@wechat_front.route('/delete_tenant')
+def delete_tenant():
+    """
+    删除关联用户
+    :return:
+    """
+    args = request.args
+    tenant_id = args.get('tenant_id')
+    print Tenant.delete_tenants(tenant_id = tenant_id)
+    ret = {
+        'retCode': '0000',
+        'retMsg': ''
+    }
+    return jsonify(ret)
+
+
 @wechat_front.route('/test')
 def test():
     return str(session['current_user_id'])
@@ -489,12 +530,32 @@ def fix_order():
         fix_order_img.img_name = img_name
         fix_order_img.fix_order_id = fix_order.id
         db.session.add(fix_order_img)
+
+
+@wechat_front.route('/delete_fix_order', methods=['GET', 'POST'])
+def delete_fix_order():
+    #TODO:to fix
+    fix_order_id = request.args.get('fix_order_id')
+    if not fix_order_id:
+        return jsonify(ret_dict('3000'))
+
     try:
         db.session.commit()
     except Exception, e:
         db.session.rollback()
         raise e
     return jsonify(ret_dict('0000'))
+
+
+
+if __name__ == "__main__":
+    monthList = [str(2015) + "%02d" % mon for mon in range(1, 13)]
+    print monthList
+    print "%02d" % 11
+    year_mon = '03'
+    year = int(year_mon[:4])
+    print year
+
 
 
 @wechat_front.route('/fix_order_list', methods=['GET', 'POST'])
