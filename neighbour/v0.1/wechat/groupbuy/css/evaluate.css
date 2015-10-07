@@ -2,6 +2,17 @@
 
 .star-wrap {height:50px;line-height: 50px;padding:0 10px;background-color:#fff;}
 
-.content {display: block;width:100%;padding:10px;}
+.stars {display: inline-block;width:114px;height:19px;margin:0 0 0 20px;vertical-align:-3px;background: url(../../images/stars.png) no-repeat -120px 0;}
+.stars>span {float:left;display:inline-block;/*border-right:solid 1px #999;*/width:22px;height: 100%;}
+.stars>span:last-child {border-right:none;}
+
+.stars-5 {background-position: 0 0;}
+.stars-4 {background-position: -24px 0;}
+.stars-3 {background-position: -48px 0;}
+.stars-2 {background-position: -72px 0;}
+.stars-1 {background-position: -96px 0;}
+.stars-0 {background-position: -120px 0;}
+
+.content {display: block;width:100%;padding:10px;border:none;}
 
 .tip {position:absolute;right:10px;margin:-26px 0 0 0;}

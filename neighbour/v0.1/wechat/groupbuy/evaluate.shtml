@@ -11,7 +11,13 @@
 
 <div class="star-wrap mt13">
     <span>评分</span>
-    <span class="star"></span>
+    <span class="stars stars-0" id="spStars">
+        <span key="1"></span>
+        <span key="2"></span>
+        <span key="3"></span>
+        <span key="4"></span>
+        <span key="5"></span>
+    </span>
 </div>
 
 <textarea class="content mt13" rows="6" maxlength="200" placeholder="商品质量如何，满意吗？" id="taContent"></textarea>
