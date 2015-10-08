@@ -44,3 +44,22 @@ class DefaultConfig(object):
     #水煤表类型
     GAS = 0                 #燃气
     WATER = 1               #水表
+
+    #团购状态
+    GROUPON_BEFORE_START = 0    #未开始
+    GROUPON_ON = 1              #进行中
+    GROUPON_OFF = 2             #结束
+
+    #团购订单状态
+    GROUPON_ORDER_STATUS_CANCLE = 0                 #失效
+    GROUPON_ORDER_STATUS_NEW = 1                    #新建
+    GROUPON_ORDER_STATUS_COMMIT = 2                 #提交
+    GROUPON_ORDER_STATUS_PAID = 3                   #已支付
+    GROUPON_ORDER_STATUS_PROCESSED = 4              #已受理
+    GROUPON_ORDER_STATUS_DILIVERED = 5              #已出货
+    GROUPON_ORDER_STATUS_RECEIVED = 6               #已收货
+    GROUPON_ORDER_STATUS_REVIEW = 7                 #已评价
+
+
+
+

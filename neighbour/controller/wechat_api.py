@@ -692,6 +692,68 @@ def get_groupon_customer_reviews():
 
     return jsonify(dict(ret, **data))
 
+@wechat_front.route('/commit_groupon_order')
+def commit_groupon_order():
+    """
+    穿件团购订单
+    :return:
+    """
+    args = request.args
+    groupon_id = args.get('groupon_id')
+    count = args.get('count')
+    address = args.get('address')
+    name = args.get('name')
+    phone = args.get('phone')
+    openid = get_current_user_openid()
+    current_user = User.get_user_by_openid(openid)
+    user_area = current_user.residential_area
+    groupon = Groupon.get_groupon(groupon_id=groupon_id)
+    product = groupon.product
+    if not current_user:
+        return jsonify(ret_dict('1000'))
+    if not groupon:
+        return jsonify(ret_dict('3000'))
+    if not user_area:
+        ret = {
+            'retCode': '3000',
+            'retMsg': '无法确定用户在哪个地区：用户id：' + str(current_user.id)
+        }
+        return jsonify(ret)
+    if not product:
+        ret = {
+            'retCode': '5000',
+            'retMsg': "没有关联的产品，请确认团购信息正确，groupon_id" + str(groupon.id)
+        }
+        return jsonify(ret)
+    groupon_order = GrouponOrder()
+    groupon_order.groupon_id = groupon_id
+    groupon_order.user_id = current_user.id
+    groupon_order.residential_area_id = user_area.id
+    groupon_order.create_time = time.time()
+    groupon_order.order_status = DefaultConfig.GROUPON_ORDER_STATUS_NEW
+    groupon_order.user_phone = phone
+    groupon_order.user_name = name
+    groupon_order.groupon_title = groupon.title
+    groupon_order.groupon_price = groupon.groupon_price
+    groupon_order.product_title = product.title
+    groupon_order.product_type = product.category
+    groupon_order.area_name = user_area.area_name
+    groupon_order.area_province = user_area.province.area_name
+    groupon_order.area_city = user_area.city.area_name
+    groupon_order.area_zone = user_area.zone.area_name
+    groupon_order.area_stree = user_area.stree
+    db.session.add(groupon_order)
+    try:
+        db.session.commit()
+    except IntegrityError, ex:
+        ret = {
+            'retCode': '5000',
+            'retMsg': '外键依赖错误：' + ex.message
+        }
+        return jsonify(ret)
+
+    return jsonify(jsonify('0000'))
+
 
 
 def get_fix_order_img_url(img_name):

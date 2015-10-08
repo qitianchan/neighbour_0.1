@@ -4,11 +4,12 @@ from neighbour.utils.database import CRUDMixin
 from hashlib import sha1
 from neighbour.utils.helper import create_salt
 from neighbour.models.tenant import Tenant
+from neighbour.models.residential_areas import ResidentialAreas
 
 class User(db.Model, CRUDMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    # residential_area_id = db.Column(db.Integer, db.ForeignKey('residential_areas.id'))
+    residential_area_id = db.Column(db.Integer, db.ForeignKey('residential_areas.id'))
     # house_info_id = db.Column(db.Integer, db.ForeignKey('house_info.id'))
     login_name = db.Column(db.String(127))
     password = db.Column(db.VARCHAR(127))
@@ -26,6 +27,7 @@ class User(db.Model, CRUDMixin):
                               primaryjoin="Tenant.user_id == User.id"
                               )
     customer_reviews = db.relationship('CustomerReviews', backref='user', order_by='desc(CustomerReviews.create_time)', lazy='dynamic')
+    residential_area = db.relationship('ResidentialAreas')
     # groupon_orders = db.relationship('GrouponOrder',
     #                                  backref='user',
     #                                  primaryjoin='GrouponOrder.user_id == User.id')

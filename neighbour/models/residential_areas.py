@@ -3,6 +3,7 @@ from neighbour.extensions import db
 from neighbour.utils.database import CRUDMixin
 from neighbour.models.areas import Areas
 from neighbour.models.cell import Cell
+# from neighbour.models.user import User
 
 # groupon_residential_ereas = db.Table('groupon_residential_ereas',
 #                                      db.Column('residential_area_id', db.Integer, db.ForeignKey('residential_areas.id'))
@@ -31,15 +32,14 @@ class ResidentialAreas(db.Model, CRUDMixin):
     # groupon_oders = db.relationship('GrouponOrder', backref='residential_area',
     #                           primaryjoin='GrouponOrder.residential_area_id == ResidentialAreas.id')
     #
-    # users = db.relationship('User', backref='residential_area',
-    #                           primaryjoin='User.residential_area_id == ResidentialAreas.id')
+    users = db.relationship('User', lazy="dynamic")
     #
     cells = db.relationship('Cell', backref='residential_area',
                               primaryjoin='Cell.residential_area_id == ResidentialAreas.id')
     #
-    # province = db.relationship('Areas')
-    # city = db.relationship('Areas')
-    zone = db.relationship('Areas', backref="residential_areas")
+    province = db.relationship('Areas')
+    city = db.relationship('Areas')
+    zone = db.relationship('Areas')
     #
     # groupons = db.relationship('Groupon', secondary=groupon_residential_ereas,
     #                            backref=db.backref('residential_areas', lazy='dynamic'))
@@ -87,38 +87,5 @@ class ResidentialAreas(db.Model, CRUDMixin):
 
         return data
 
-# data = {
-#     'code': 131,
-#     'name': 'das',
-#     'buildingList':[
-#         {
-#             'buildingCode':23,
-#             'buildingName':'sdss',
-#             'houseList': [
-#                 {
-#                     'houseNum' : 232,
-#                     'houseCode':'2323'
-#                 },
-#                 {
-#                     'houseNum' : 232,
-#                     'houseCode':'2323'
-#                 }
-#             ]
-#         },
-#         {
-#             'buildingCode':23,
-#             'buildingName':'sdss',
-#             'houseList': [
-#                 {
-#                     'houseNum' : 232,
-#                     'houseCode':'2323'
-#                 },
-#                 {
-#                     'houseNum' : 232,
-#                     'houseCode':'2323'
-#                 }
-#             ]
-#         }
-#     ]
-# }
+
 

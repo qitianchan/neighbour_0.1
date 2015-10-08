@@ -14,6 +14,7 @@ class GrouponOrder(db.Model, CRUDMixin):
     residential_area_id = db.Column(db.Integer, db.ForeignKey('residential_areas.id'))
     create_time = db.Column(db.Integer)                                                 # 创建时间
     paid_time = db.Column(db.Integer)                                                   # 付款时间
+    confirm_time = db.Column(db.Integer)                                                # 受理时间
     order_status = db.Column(db.SMALLINT)                                               # 订单状态
 
     # 订单冗余信息
