@@ -14,53 +14,57 @@
             var $this = $(this),k;
             k = $this.attr("key");
             if(k == "0"){
-                loadVillage(allVillage);
+                loadArea(allAreaList);
             }else{
-                var area = G.findByAttr(allAreaList,"area_id",k);
-                loadVillage(area.villageList);
+                var area = G.findByAttr(allZoneList,"zoneID",k);
+                loadArea(area.areaList);
             }
         });
 
-        //$divVillage.delegate("li","click",function(){
-        //    var $this = $(this),
-        //        k = $this.attr("key");
-        //    window.location.href = "submitForm.shtml?village_id="+k;
-        //});
+        var allZoneList = [],allAreaList = [];
+
+        Sandbox(["user"],function(box){
+            box.getAreas(function(d){
+                allZoneList = d.zoneList;
+                loadData(allZoneList);
+            });
+        });
 
         // test
-        var allAreaList = [{area_id:"01",area_name:"天河",villageList:[
-            {village_id:"01001",village_name:"华景新城"},
-            {village_id:"01002",village_name:"都市华庭"},
-            {village_id:"01003",village_name:"中怡城市花园"},
-            {village_id:"01004",village_name:"祥龙花园"}
-        ]},
-            {area_id:"02",area_name:"越秀",villageList:[{village_id:"02001",village_name:"越秀01"}]},
-            {area_id:"03",area_name:"番禺",villageList:[]},
-            {area_id:"04",area_name:"海珠",villageList:[]},
-            {area_id:"05",area_name:"荔湾",villageList:[]},
-            {area_id:"06",area_name:"花都",villageList:[]}],
-            allVillage = [];
+        /*
+         var allAreaList = [{zoneID:"01",zoneName:"天河",areaList:[
+         {areaID:"01001",areaName:"华景新城"},
+         {areaID:"01002",areaName:"都市华庭"},
+         {areaID:"01003",areaName:"中怡城市花园"},
+         {areaID:"01004",areaName:"祥龙花园"}
+         ]},
+         {zoneID:"02",zoneName:"越秀",areaList:[{areaID:"02001",areaName:"越秀01"}]},
+         {zoneID:"03",zoneName:"番禺",areaList:[]},
+         {zoneID:"04",zoneName:"海珠",areaList:[]},
+         {zoneID:"05",zoneName:"荔湾",areaList:[]},
+         {zoneID:"06",zoneName:"花都",areaList:[]}],
+         allVillage = [];
+         loadData(allAreaList);
+         */
 
-        loadData(allAreaList);
-
-        function loadData(areaList){
-            var htmlStr = "<li key='0'>全部</li>",area = null, i,len;
-            for(i = 0,len = areaList.length; i < len; i++){
-                area = areaList[i];
-                htmlStr += "<li key='"+area.area_id+"'>"+area.area_name+"</li>";
-                if(area.villageList.length > 0){
-                    allVillage = allVillage.concat(area.villageList);
+        function loadData(zoneList){
+            var htmlStr = "<li key='0'>全部</li>",zone = null, i,len;
+            for(i = 0,len = zoneList.length; i < len; i++){
+                zone = zoneList[i];
+                htmlStr += "<li key='"+zone.zoneID+"'>"+zone.zoneName+"</li>";
+                if(zone.areaList.length > 0){
+                    allAreaList = allAreaList.concat(zone.areaList);
                 }
             }
             $divArea.html(htmlStr);
-            loadVillage(allVillage);
+            loadArea(allAreaList);
         }
 
-        function loadVillage(villageList){
-            var i,len,village,htmlStr = "";
-            for(i=0,len = villageList.length; i < len; i++){
-                village = villageList[i];
-                htmlStr += "<li key='"+village.village_id+"'>"+village.village_name+"</li>";
+        function loadArea(areaList){
+            var i,len,area,htmlStr = "";
+            for(i=0,len = areaList.length; i < len; i++){
+                area = areaList[i];
+                htmlStr += "<li key='"+area.areaID+"'>"+area.areaName+"</li>";
             }
             $divVillage.html(htmlStr);
         }

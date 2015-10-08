@@ -60,14 +60,17 @@
         var billList = [{code:"01",name:"水费",fee:"15.9",status:"1",detailList:["本月读数：417","上个月读数：395","实际用量：22","单价：2.620","金额：57.64","基本水费：1.460*22=32.120","污水处理费：0.920*22=20.240","水资源、水利、公用事业费：5.28"]},
             {code:"02",name:"电费",fee:"156",status:"0",detailList:["本月读数：417","上个月读数：395","实际用量：22","单价：2.620","金额：57.64","基本水费：1.460*22=32.120","污水处理费：0.920*22=20.240","水资源、水利、公用事业费：5.28"]}];
 
-
         setAddress(addressList[0].code,addressList[0].address);
         loadFeeData(billList);
 
-        var currentDate = "201501",dateList = [],dateIndex = 0,TOTAL = 12;
+        var currentDate = "201508",dateList = [],dateIndex = 0,TOTAL = 12;
         dateList = createDateList(currentDate);
         loadDateList(dateList);
         setDate();
+
+        Sandbox(["server"],function(box){
+
+        });
 
         /**
          * 设置地址信息

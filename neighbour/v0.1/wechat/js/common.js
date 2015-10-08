@@ -237,7 +237,9 @@
                     var $this = $(this),
                         k = $this.attr("key"),
                         v = $this.text();
-                    callback(k,v);
+                    if(k != ""){
+                        callback(k,v);
+                    }
                     obj.hide();
                 });
                 initFlag = true;
@@ -255,6 +257,7 @@
                 }
                 // clear
                 $ul.empty();
+                obj.addItem("","< 返回");
                 if(keyName && valName){
                     for(var i = 0,len = list.length; i < len; i++){
                         obj.addItem(list[i][keyName],list[i][valName]);
@@ -379,24 +382,79 @@
 
     Sandbox.modules = {};
 
+    // 用户模块
     Sandbox.modules.user = function(box){
 
+        /**
+         * 获得区域及小区信息
+         * @param callback
+         */
         box.getAreas = function(callback){
             G.ajax({
                 url:GET_AREAS_URL
             },callback);
         };
 
+        /**
+         * 获得小区楼宇房号信息
+         * @param code
+         * @param callback
+         */
         box.getAreaByCode = function(code,callback){
             G.ajax({
                 url:GET_AREA_BY_CODE_URL,
                 data:{code:code}
             },callback);
         };
+
+        /**
+         * 获得用户房产信息
+         * @param callback
+         */
+        box.getUserHouseInfo = function(callback){
+            G.ajax({
+                url:GET_USER_HOSE_INFO_URL
+            },callback);
+        };
     };
 
-    var GET_AREAS_URL = "getAreas",
-        GET_AREA_BY_CODE_URL = "getAreaByCode";
+    // 小区服务模块
+    Sandbox.modules.server = function(box){
+
+        /**
+         * 获得水煤表抄送状态
+         * @param callback
+         */
+        box.getUploadBillStatus = function(callback){
+            G.ajax({
+                url:GET_UPLOAD_BILL_STATUS_URL
+            },callback);
+        };
+
+        /**
+         * 获得报修记录列表
+         * @param callback
+         */
+        box.getRepairOrders = function(callback){
+            G.ajax({
+                url:GET_REPAIR_ORDERS_URL
+            },callback);
+        }
+
+    };
+
+    var GET_AREAS_URL = "/wechat_front/get_areas",
+        GET_AREA_BY_CODE_URL = "/wechat_front/get_area_by_code",
+        GET_USER_HOSE_INFO_URL = "/wechat_front/get_user_house_info",
+        UPDATE_HOSE_INFO_URL = "/wechat_front/update_house_info",
+        DELETE_HOSE_INFO_URL = "/wechat_front/delete_house_info",
+        GET_UPLOAD_BILL_STATUS_URL = "/wechat_front/getUploadBillDataStatus",
+        UPLOAD_BILL_DATA_URL = "/wechat_front/upload_bill_data",
+        GET_MONTH_BILL_STATUS_URL = "/wechat_front/get_month_bill_status",
+        GET_BILL_URL = "/wechat_front/get_bill",
+        UPLOAD_REPAIR_ORDER_URL = "/wechat_front/upload_repair_order",
+        GET_REPAIR_ORDERS_URL = "/wechat_front/get_repair_orders",
+        GET_REPAIR_ORDER_DETAIL = "/wechat_front/getRepairOrderDetail";
 
 })(window,jQuery);
 

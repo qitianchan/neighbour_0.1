@@ -32,17 +32,19 @@
 </div>
 <div class="row mt5">
     <label class="key">姓名</label>
-    <input type="text" class="val" id="tbName"/>
+    <input type="text" class="input" id="tbName" placeholder="请输入姓名"/>
 </div>
 <div class="row mt5">
     <label class="key">手机</label>
-    <input type="text" class="val" id="tbPhone"/>
+    <input type="text" class="input" id="tbPhone" placeholder="请输入手机"/>
 </div>
 <div class="row mt5">
     <label class="key">验证码</label>
-    <input type="text" class="val" id="tbVerifyCode" maxlength="6" style="width:60px;"/>
+    <input type="text" class="input" id="tbVerifyCode" maxlength="6" placeholder="请输入" style="width:60px;"/>
     <input type="button" class="get-code fr" id="btnSendCode" value="发送验证码"/>
 </div>
+
+<p class="tip4code" id="pTip" style="display: none;">验证码已发送到业主手机，请联系业主获取</p>
 
 <button class="btn-large mt13" id="btnSubmit">提交认证</button>
 

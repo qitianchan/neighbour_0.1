@@ -21,7 +21,7 @@
 
 <p class="tip">请在20号前提交九月份水表读数</p>
 
-<button class="btn-large">提交</button>
+<button class="btn-large " disabled="disabled" id="btnSubmit">提交</button>
 
 <script src="/wechat/js/jquery.min.js"></script>
 <script src="/wechat/js/common.js"></script>

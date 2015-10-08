@@ -1,3 +1,4 @@
 @charset "UTF-8";
 .village {text-indent:16px;height:40px;line-height: 40px;}
-.get-code {height:30px;line-height: 30px;margin:5px 0 0 0;padding:0 5px;border:none;border-radius: 5px;color:#fff;background-color: #0099ff;}
+.get-code {height:30px;line-height: 30px;margin:5px 0 0 0;padding:0 10px;border:none;border-radius: 5px;font-size:12px;color:#fff;background-color: #0099ff;}
+.tip4code {margin:5px 0 0 0;line-height: 20px;text-indent:16px;font-size:12px;color:#f00;}

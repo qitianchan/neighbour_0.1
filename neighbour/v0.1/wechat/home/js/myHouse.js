@@ -9,10 +9,20 @@
             $tempHouse = $("#tempHouse");
 
         // test
+        /*
         var houseList = [{code:"01",address:"风享花园一期丰庭南街15号405",type:"0",phone:"18888888888"},
             {code:"02",address:"风享花园一期丰庭南街15号406",type:"1",phone:"1880000000"}];
-
         loadData(houseList);
+        */
+
+        var houseList = [];
+
+        Sandbox(["user"],function(box){
+            box.getUserHouseInfo(function(d){
+                houseList = d.houseInfoList;
+                loadData(houseList);
+            });
+        });
 
         function loadData(houseList){
             var $temp,item;
@@ -21,10 +31,10 @@
                 $temp = $tempHouse.children().clone();
                 //$temp.attr("key",item.code);
                 $("._address",$temp).text(item.address);
-                $("._role",$temp).text(ROLE_TYPE[item.type]);
+                $("._role",$temp).text(ROLE_TYPE[item.userType]);
                 $("._phone",$temp).text(item.phone);
                 //$(".edit",$temp).attr("href","/wechat/verify/submitForm.shtml?type=edit&code="+item.code);
-                $(".delete",$temp).attr("key",item.code);
+                $(".delete",$temp).attr("key",item.houseCode);
                 $ulHouse.append($temp);
             }
         }
