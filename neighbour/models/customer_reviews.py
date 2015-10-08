@@ -8,7 +8,7 @@ class CustomerReviews(db.Model, CRUDMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     groupon_id = db.Column(db.Integer, db.ForeignKey('groupon.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    score = db.Column(db.SmallInteger)
+    score = db.Column(db.SmallInteger, default=5)
     create_time = db.Column(db.Integer)                                                 # 创建时间
     content = db.Column(db.VARCHAR(1024))
 

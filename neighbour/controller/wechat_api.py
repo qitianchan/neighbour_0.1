@@ -742,19 +742,101 @@ def commit_groupon_order():
     groupon_order.area_city = user_area.city.area_name
     groupon_order.area_zone = user_area.zone.area_name
     groupon_order.area_stree = user_area.stree
+    groupon_order.count = count
+    groupon_order.total_fee = count * groupon.groupon_price + groupon.shipping_fee
     db.session.add(groupon_order)
     try:
         db.session.commit()
+        order_id = groupon_order.id
+        #更新groupon的sold_count
+        groupon.sold_count += 1
     except IntegrityError, ex:
         ret = {
             'retCode': '5000',
             'retMsg': '外键依赖错误：' + ex.message
         }
         return jsonify(ret)
+    ret = ret_dict('0000')
+    ret['orderID'] = order_id
+    return jsonify(ret)
 
-    return jsonify(jsonify('0000'))
 
+@wechat_front.route('/get_groupon_orders')
+def get_groupon_orders():
+    args = request.args
+    status = args.get('status')
+    page = args.get('page', 1)
+    page_count = args.get('page_count', 20)
 
+    openid = get_current_user_openid()
+    current_user = User.get_user_by_openid(openid)
+    if not current_user:
+        ret = ret_dict('3000')
+        return jsonify(ret)
+    orders = GrouponOrder.get_orders_by_status_user(status, current_user.id, page, page_count)
+    ret = ret_dict('0000')
+    ret['orderList'] = [{
+        'title': order.groupon_title,
+        'count': order.count,
+        'totalFee': order.total_fee,
+        'shippingFee': order.groupon.shipping_fee,
+        'status': order.order_status,
+        'orderID': order.id
+    }for order in orders]
+    return jsonify(ret)
+
+@wechat_front.route('/get_groupon_order_by_id')
+def get_groupon_order_by_id():
+    order_id = request.args.get('order_id')
+    order = GrouponOrder.get_groupon_order_by_id(order_id)
+    ret = ret_dict('0000')
+    if not order:
+        ret['orderDetail'] = None
+        return jsonify(ret)
+    ret['orderDetail'] = {
+        'title': order.groupon_title,
+        'count': order.count,
+        'totalFee': order.total_fee,
+        'shippingFee': order.groupon.shipping_fee,
+        'status': order.order_status,
+        'orderID': order.id
+    }
+    return jsonify(ret)
+
+@wechat_front.route('/commit_customer_review')
+def commit_customer_review():
+    args = request.args
+    openid = get_current_user_openid()
+    current_user = User.get_user_by_openid(openid)
+    if not current_user:
+        ret = ret_dict('3000')
+        return jsonify(ret)
+
+    groupon_id = args.get('groupon_id')
+    score = args.get('score')
+    content = args.get('content')
+    customer_review = CustomerReviews()
+    customer_review.score = score
+    customer_review.user_id = current_user.id
+    customer_review.groupon_id = groupon_id
+    customer_review.create_time = time.time()
+    customer_review.content = content
+    db.session.add(customer_review)
+    try:
+        db.session.flush()
+        db.session.commit()
+    except IntegrityError, ex:
+        ret = {
+            'retCode': '5000',
+            'retMsg': '插入数据外键依赖错误' + ex.message
+        }
+        return jsonify(ret)
+    except Exception ,ex:
+        return jsonify(ret_dict('5000'))
+
+    ret = ret_dict('0000')
+    ret['reviewID'] = customer_review.id
+    return jsonify(ret)
 
 def get_fix_order_img_url(img_name):
     # TODO: 如果用Nginx作为静态文件服务器，这个函数需要改写
