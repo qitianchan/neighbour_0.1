@@ -7,6 +7,24 @@ from neighbour.views.account import account
 from neighbour.views.test import test
 from neighbour.views.wechat import wechat
 from neighbour.controller.wechat_api import wechat_front
+from neighbour.models.product import Product
+from neighbour.models.product_image import ProductImage
+from neighbour.models.groupon_order import GrouponOrder
+from neighbour.models.groupon import GrouponOrderAreaOccocs
+from neighbour.models.groupon import Groupon
+from neighbour.models.house_info import HouseInfo
+from neighbour.models.customer_reviews import CustomerReviews
+# from neighbour.models.valiate_info import ValiateInfo
+from neighbour.models.user import User
+# from neighbour.models.fix_order import FixOrder
+from neighbour.models.house_fee import HouseFee
+from neighbour.models.building import Building
+from neighbour.models.cell import Cell
+from neighbour.models.areas import Areas
+from neighbour.models.residential_areas import ResidentialAreas
+# from neighbour.models.notice import Notice
+# from neighbour.models.info import Info
+from neighbour.models.tenant import Tenant
 
 def create_app(config=None):
     """
@@ -59,23 +77,7 @@ def login_configure(app):
 
 if __name__ == '__main__':
     app = create_app()
-    from neighbour.models.product import Product
-    from neighbour.models.product_image import ProductImage
-    from neighbour.models.groupon_order import GrouponOrder
-    from neighbour.models.groupon import GrouponOrderAreaOccocs
-    from neighbour.models.groupon import Groupon
-    from neighbour.models.house_info import HouseInfo
-    # from neighbour.models.valiate_info import ValiateInfo
-    from neighbour.models.user import User
-    # from neighbour.models.fix_order import FixOrder
-    from neighbour.models.house_fee import HouseFee
-    from neighbour.models.building import Building
-    from neighbour.models.cell import Cell
-    from neighbour.models.areas import Areas
-    from neighbour.models.residential_areas import ResidentialAreas
-    # from neighbour.models.notice import Notice
-    # from neighbour.models.info import Info
-    from neighbour.models.tenant import Tenant
+
 
 
     # db.drop_all()

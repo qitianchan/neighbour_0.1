@@ -17,11 +17,8 @@ class Product(db.Model, CRUDMixin):
     # one-to-many
     images = db.relationship('ProductImage',
                              backref='product',
-                             primaryjoin='ProductImage.product_id == Product.id',
-                             cascade="all, delete-orphan")
+                            )
 
-    groupons = db.relationship('Groupon',
-                               backref='product',
-                               primaryjoin='Groupon.id == Product.id')
+    groupons = db.relationship('Groupon', backref='product',)
 
 

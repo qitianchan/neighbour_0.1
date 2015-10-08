@@ -15,6 +15,12 @@ from neighbour.models.house_info import HouseInfo
 from neighbour.models.house_info import UserHouseTable
 from neighbour.models.fix_order import FixOrder
 from neighbour.models.fix_order_img import FixOrderImg
+from neighbour.models.groupon import Groupon
+from neighbour.models.groupon import GrouponOrderAreaOccocs
+from neighbour.models.groupon_order import GrouponOrder
+from neighbour.models.product import Product
+from neighbour.models.product_image import ProductImage
+from neighbour.models.customer_reviews import CustomerReviews
 import time
 from neighbour.configs.default import DefaultConfig as Config
 from neighbour.extensions import db
@@ -548,13 +554,7 @@ def delete_fix_order():
 
 
 
-if __name__ == "__main__":
-    monthList = [str(2015) + "%02d" % mon for mon in range(1, 13)]
-    print monthList
-    print "%02d" % 11
-    year_mon = '03'
-    year = int(year_mon[:4])
-    print year
+
 
 
 
@@ -626,6 +626,72 @@ def get_fix_order_profile(fix_order_id):
     ret['fixOrder'] = data
     return jsonify(ret)
 
+@wechat_front.route('/get_groupon_detail')
+def get_groupon_detail():
+    """
+    获取团购详情
+    :return:
+    """
+    groupon_id = request.args.get('groupon_id')
+    groupon = Groupon.get_groupon(groupon_id)
+    product = groupon.product
+    product_imgas = product.images
+    ret = ret_dict()
+    if not groupon:
+        ret = ret_dict('3000')
+        ret['retMsg'] = '找不到团购详情'
+    else:
+        info = {
+            'status': groupon.groupon_status,
+            'title': groupon.title,
+            'price': groupon.groupon_price,
+            'originPrice': product.orginal_price,
+            'endTime': groupon.end_time,
+            'shipWay': groupon.ship_way,
+            'shipping_fee': groupon.shipping_fee,
+            'count': groupon.sold_count,
+            'product_content': product.content,
+            'product_imgs': [{
+                'img_url': img.img_url,
+                'img_order': img.order
+            }for img in product.images],
+            'uuid': groupon.profile_img
+        }
+    ret = dict(ret, **info)
+    return jsonify(ret)
+
+
+@wechat_front.route('/get_groupon_customer_reviews')
+def get_groupon_customer_reviews():
+    groupon_id = request.args.get('groupon_id')
+    if not groupon_id:
+        ret = ret_dict('3000')
+        return jsonify(ret)
+    page_count = request.args.get('page_count', 20)
+    page_num  = request.args.get('page', 1)
+    index_start = (page_num - 1) * 20
+    index_end = index_start + page_count
+    statics_data = CustomerReviews.get_statics_data(groupon_id)
+    groupon = Groupon.get_groupon(groupon_id)
+    reviews = groupon.customer_reviews[index_start: index_end]
+    ret = ret_dict('0000')
+    data = {
+        'vagScore': statics_data['avg_score'],
+        'reviewsCount': statics_data['reviews_count'],
+        'pageCount': page_count,
+        'page': page_num,
+        'sum': len(reviews),
+        'reviewList': [{
+            'userID': review.user.id,
+            'nickname': review.user.wechat_nickname,
+            'score': review.score,
+            'content': review.content,
+            'uuid': review.user.headimg_url
+        }for review in reviews]
+    }
+
+    return jsonify(dict(ret, **data))
+
 
 
 def get_fix_order_img_url(img_name):
@@ -636,4 +702,17 @@ def get_fix_order_img_url(img_name):
 
 
 if __name__ == "__main__":
-    print os.path.join(UPLOAD_FOLDER, '23.jpg')
+    monthList = [str(2015) + "%02d" % mon for mon in range(1, 13)]
+    print monthList
+    print "%02d" % 11
+    year_mon = '03'
+    year = int(year_mon[:4])
+    print year
+    d1 = {
+        '1':23
+    }
+    d2 = {
+        1:23
+    }
+    d3 = dict(d1, **d2)
+    print d3

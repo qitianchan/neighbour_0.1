@@ -30,7 +30,5 @@ class GrouponOrder(db.Model, CRUDMixin):
     area_zone = db.Column(db.VARCHAR(32))
     area_stree = db.Column(db.VARCHAR(512))
 
-    groupon = db.relationship('Groupon', backref='groupon_orders')
-
-    user = db.relationship('User',backref='groupon_orders')
+    user = db.relationship('User', backref='groupon_orders')
 

@@ -15,6 +15,7 @@ class User(db.Model, CRUDMixin):
     salt = db.Column(db.VARCHAR(127))
     wechat_nickname = db.Column(db.String(127))
     wechat_openid = db.Column(db.String(255))
+    headimg_url = db.Column(db.String(1024))
     user_type = db.Column(db.Integer)
     phone = db.Column(db.VARCHAR(15))
     roles = db.Column(db.Integer)
@@ -24,6 +25,7 @@ class User(db.Model, CRUDMixin):
                               backref="user",
                               primaryjoin="Tenant.user_id == User.id"
                               )
+    customer_reviews = db.relationship('CustomerReviews', backref='user', order_by='desc(CustomerReviews.create_time)', lazy='dynamic')
     # groupon_orders = db.relationship('GrouponOrder',
     #                                  backref='user',
     #                                  primaryjoin='GrouponOrder.user_id == User.id')
