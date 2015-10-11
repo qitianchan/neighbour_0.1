@@ -94,6 +94,16 @@
 
         });
 
+        /**
+         * 收集表单
+         */
+        function collectForm(){
+
+        }
+
+        /**
+         * 重置表单
+         */
         function resetForm(){
             $spProject.text("").attr("key","");
             $spBuilding.text("").attr("key","");

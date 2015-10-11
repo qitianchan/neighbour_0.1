@@ -32,7 +32,7 @@
                 //$temp.attr("key",item.code);
                 $("._address",$temp).text(item.address);
                 $("._role",$temp).text(ROLE_TYPE[item.userType]);
-                $("._phone",$temp).text(item.phone);
+                $("._phone",$temp).text(item.userPhone);
                 //$(".edit",$temp).attr("href","/wechat/verify/submitForm.shtml?type=edit&code="+item.code);
                 $(".delete",$temp).attr("key",item.houseCode);
                 $ulHouse.append($temp);
